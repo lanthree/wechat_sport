@@ -1,0 +1,25 @@
+<view class="container">
+
+  <text class="section__title" style="padding-bottom:20px">一些使用说明</text>
+  <view class="body-view" style="width:80%;display:block;">
+  <text class="info">1 本小程序旨在小组运动统计分享。</text>
+  <text class="info">2 主页上滑可以看到上周步数的柱状图。</text>
+  <text class="info">3 主页点击 运动步数 可更新微信运动记录到本小程序。</text>
+  <text class="info">4 主页点击 其他运动 可以上传其他运动记录，瑞雪哦。</text>
+  <text class="info">5 主页点击 本周进度 可以修正运动步数。</text>
+  <text class="info">6 排名页面可以左右滑动。</text>
+  <text class="info">7 若有任何建议和疑问，请联系开发同学。</text>
+  </view>
+  
+
+  
+<view class="splitline" style="width:100%;margin:20px 0px" />
+
+  <text class="section__title" style="padding-bottom:20px">开发同学</text>
+  <view class="body-view" style="width:80%;display:block;">
+    <text class="info">前端 lanthreexu（微信号 lanthree）</text>
+    <text class="info">后台 willqin（微信号 kekewuling）</text>
+    <text class="info">后台 shitang（微信号 dog2210）</text>
+  </view>
+
+</view>

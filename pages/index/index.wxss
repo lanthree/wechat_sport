@@ -1,0 +1,130 @@
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.circle-box {
+  width: 100%;
+  position: absolute; 
+}
+
+.circle {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.draw_btn {
+  margin: 0 auto; /*水平居中*/
+  transform: translateY(-50%);
+  margin-top: 100px;
+  text-align: center;
+}
+
+.draw_btn text {
+  font-size: 40px;
+  color: #E55E3A;
+}
+
+.info {
+  margin: 60px auto; /*水平居中*/
+  transform: translateY(-50%);
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+.info text {
+  font-size: 15px;
+}
+
+.indexinfo {
+  display: inline-block
+}
+
+.indexinfo_item_1 {
+  font-size: 25px;
+}
+
+.indexinfo_item_2 {
+  font-size: 15px;
+  display: block
+}
+
+
+.btn { 
+ width: 80%; 
+ padding: 20rpx 0; 
+ border-radius: 10rpx; 
+ text-align: center; 
+ margin: 40rpx 10%; 
+ background: #000; 
+ color: #fff; 
+} 
+ 
+/*mask*/ 
+.drawer_screen { 
+ width: 100%; 
+ height: 100%; 
+ position: fixed; 
+ top: 0; 
+ left: 0; 
+ z-index: 10000; 
+ background: #000; 
+ opacity: 0.3;
+ overflow: hidden;
+} 
+ 
+/*content*/ 
+.drawer_box { 
+ width: 650rpx; 
+ overflow: hidden; 
+ position: fixed; 
+ top: 50%; 
+ left: 0; 
+ z-index: 10001; 
+ background: #FAFAFA; 
+ margin: -150px 50rpx 0 50rpx; 
+ border-radius: 3px; 
+} 
+ 
+.drawer_title{ 
+ padding:15px; 
+ font: 20px; 
+ text-align: center;
+} 
+ 
+.btn_ok{ 
+ padding: 10px; 
+ font: 20px; 
+ text-align: center; 
+ border-top: 1px solid #E8E8EA; 
+ color: #387AEB; 
+}
+ 
+.top{ 
+ padding-top:8px; 
+} 
+.bottom { 
+ padding-bottom:8px; 
+} 
+.title { 
+ height: 20px;
+ text-align: center; 
+ display: inline-block; 
+ font-size:20px; 
+}

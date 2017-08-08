@@ -1,0 +1,54 @@
+<view class="container">
+  <text class="section__title">近两周运动记录</text>
+  <view class="body-view" style="width:70%;display:block;background-color:#F07B41;border:20px solid #F07B41;border-radius:5px">
+
+    <view wx:for="{{sports_record}}">
+      <view class="splitline" style="width:100%;background-color:#D56F2B;margin:3px 0" wx:if="{{index != 0}}" />
+      <view style="display:block;color:#FFF">
+        <label style="display:inline-block;width:50%">{{item.date}}</label>
+        <label style="display:inline-block;width:25%">{{item.name}}</label>
+        <label style="display:inline-block;width:25%;text-align:right">{{item.times}}</label>
+      </view>
+    </view>
+  </view>
+
+
+</view>
+
+<view class="splitline" style="width:100%" />
+
+<view class="container" style="font-color:#04ABFF">
+
+  <text class="section__title">上传新的运动记录</text>
+
+  <view style="width:70%;margin-top:10px; margin-bottom:-15px">
+    <picker-view indicator-style="height: 50px;" style="width: 100%; height: 80px;" value="{{value}}" bindchange="bindChange">
+      <picker-view-column style="width:33%;text-align:center">
+        <view wx:for="{{years}}" style="line-height: 50px;">{{item}}年</view>
+      </picker-view-column>
+      <picker-view-column style="width:33%;text-align:center">
+        <view wx:for="{{months}}" style="line-height: 50px;">{{item}}月</view>
+      </picker-view-column>
+      <picker-view-column style="width:33%;text-align:center">
+        <view wx:for="{{days}}" style="line-height: 50px;">{{item}}日</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+
+  <text class="section__title" style="padding-top:20px">运动类型</text>
+
+  <view class="body-view" style="width:70%">
+
+    <checkbox-group bindchange="checkboxChange">
+      <view wx:for="{{support_sports}}" wx:key="key" wx:for-index="idx" style="display:inline-block;width:50%" wx:if="{{idx != 0}}">
+        <checkbox value="{{idx}}" checked="{{item.checked}}" /> {{item.name}}
+      </view>
+    </checkbox-group>
+  </view>
+
+  <view class="body-view" style="width:80%;display:block;margin-top:5px">
+    <button bindtap="update_sport">确认上传</button>
+  </view>
+  
+
+</view>

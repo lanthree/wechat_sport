@@ -1,0 +1,17 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/week_exercise/week_exercise",
+    "pages/week_steps/week_steps",
+    "pages/setting/setting",
+    "pages/team_rank/team_rank",
+    "pages/info/info"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "生命在于运动",
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh": true
+  }
+}

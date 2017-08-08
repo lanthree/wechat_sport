@@ -1,0 +1,140 @@
+<!--index.wxml-->
+<view class="page">
+
+<view style="width:100%;display:block;height:30px">
+  <i class="fa fa-info-circle fa-2x" style="display:inline_block;float:left;margin-top:10px;margin-left:10px;color:#839496;font-size:1.7em"  bindtap="info"/>
+  <i class="fa fa-cog fa-2x" style="display:inline_block;float:right;margin-top:10px;margin-right:10px;color:#839496;font-size:1.7em" bindtap="setting"/>
+</view>
+
+  <view class="container" style="height:260px;display:block;margin-top:-25px">
+    <view class="circle-box">
+      <canvas class="circle" style="z-index:-10; width:200px; height:200px" canvas-id="canvasCircle" />
+      <canvas class="circle" style="z-index:-5;width:200px;height:200px;" canvas-id="canvasArcCir" />
+      <view class="info">
+        <text>今日步数</text>
+      </view>
+      <view class="draw_btn" bindtap="update">
+        <text>{{point}}</text>
+      </view>
+      <!--view class="info" style="margin-top:0px;" bindtap="powerDrawer" data-statu="open"-->
+      <view class="info" style="margin-top:0px;" data-statu="open">
+        <text>目标：{{need_point}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="container" style="padding-top:0px;display:block;width:80%;margin-left:10%">
+    <view class="indexinfo" style="width:33%;">
+      <view class="indexinfo_item" style="text-align:center" bindtap="week_exercise">
+        <text class="indexinfo_item_1" style="color:#8D30D9">{{other_sports}}</text>
+        <text class="indexinfo_item_2">[ 其他运动 ]</text>
+      </view>
+    </view>
+
+    <view class="indexinfo" style="width:34%">
+      <view class="indexinfo_item" style="text-align:center" bindtap="week_steps">
+        <text class="indexinfo_item_1" style="color:#5E90AF">{{ progress }}%</text>
+        <text class="indexinfo_item_2">[ 本周进度 ]</text>
+      </view>
+    </view>
+
+    <view class="indexinfo" style="width:33%" >
+      <view class="indexinfo_item" style="text-align:center" bindtap="team_rank" >
+        <text class="indexinfo_item_1" style="color:#07ADFF" wx:if="{{user_info.rank}}">{{user_info.rank}}</text>
+        <text class="indexinfo_item_1" style="color:#07ADFF" wx:if="{{!user_info.rank}}">0</text>
+        <text class="indexinfo_item_2">[ 小组排名 ]</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="splitline" />
+  <view class="container" style="padding:10px 0;display:block;width:80%;margin-left:10%">
+    <view style="width:15%;display:inline-block;">
+      <i class="fa fa-bar-chart" style="margin-left:10%;width:15px;height:15px;color:#387AEB" />
+    </view>
+
+    <text style="color:#6497F0;font-size:15px;width:70%;display:inline-block;text-align:center">{{week_now[0].date}}~{{week_now[week_now.length-1].date}}</text>
+    <text style="color:#AEAEAE;font-size:10px;width:15%;display:inline-block;text-align:center">步数</text>
+  </view>
+  <view class="splitline" style="width:80%" />
+
+  <view class="container" style="padding:0px;display:block;;height:{{bar_chart_height+10}}px;">
+    <canvas class="circle" style="z-index:3;width:{{bar_chart_width}}px;height:{{bar_chart_height}}px" canvas-id="canvas_bar_back" />
+    <canvas class="circle" style="z-index:5;width:{{bar_chart_width}}px;height:{{bar_chart_height}}px;" canvas-id="canvas_bar_real" />
+  </view>
+
+  <view class="container" style="padding: 0px;margin:-10px auto;display:block;width:{{bar_chart_width}}px;">
+    <view style="width:{{bar_chart_width/7}}px;text-align:center;font-size:10px;display:inline-block">
+      <text>周一</text>
+    </view>
+    <view style="width:{{bar_chart_width/7}}px;text-align:center;font-size:10px;display:inline-block">
+      <text>周二</text>
+    </view>
+    <view style="width:{{bar_chart_width/7}}px;text-align:center;font-size:10px;display:inline-block">
+      <text>周三</text>
+    </view>
+    <view style="width:{{bar_chart_width/7}}px;text-align:center;font-size:10px;display:inline-block">
+      <text>周四</text>
+    </view>
+    <view style="width:{{bar_chart_width/7}}px;text-align:center;font-size:10px;display:inline-block">
+      <text>周五</text>
+    </view>
+    <view style="width:{{bar_chart_width/7}}px;text-align:center;font-size:10px;display:inline-block">
+      <text>周六</text>
+    </view>
+    <view style="width:{{bar_chart_width/7}}px;text-align:center;font-size:10px;display:inline-block">
+      <text>周日</text>
+    </view>
+  </view>
+
+  <view class="splitline" style="margin-top:30px" />
+  <view class="container" style="padding:10px 0;display:block;width:80%;margin-left:10%">
+    <view style="width:15%;display:inline-block;">
+      <i class="fa fa-bar-chart" style="margin-left:10%;width:15px;height:15px;color:#387AEB" />
+    </view>
+
+    <text style="color:#6497F0;font-size:15px;width:70%;display:inline-block;text-align:center">{{week_pre[0].date}}~{{week_pre[week_pre.length-1].date}}</text>
+    <text style="color:#AEAEAE;font-size:10px;width:15%;display:inline-block;text-align:center">步数</text>
+  </view>
+  <view class="splitline" style="width:80%" />
+
+  <view class="container" style="padding:0px;display:block;;height:{{bar_chart_height+10}}px;">
+    <canvas class="circle" style="z-index:3;width:{{bar_chart_width}}px;height:{{bar_chart_height}}px" canvas-id="canvas_bar_back_2" />
+    <canvas class="circle" style="z-index:5;width:{{bar_chart_width}}px;height:{{bar_chart_height}}px;" canvas-id="canvas_bar_real_2" />
+  </view>
+
+  <view class="container" style="padding: 0px;padding-bottom:10px;margin:-10px auto 20px auto;display:block;width:{{bar_chart_width}}px;">
+    <view style="width:{{bar_chart_width/7}}px;text-align:center;font-size:10px;display:inline-block">
+      <text>周一</text>
+    </view>
+    <view style="width:{{bar_chart_width/7}}px;text-align:center;font-size:10px;display:inline-block">
+      <text>周二</text>
+    </view>
+    <view style="width:{{bar_chart_width/7}}px;text-align:center;font-size:10px;display:inline-block">
+      <text>周三</text>
+    </view>
+    <view style="width:{{bar_chart_width/7}}px;text-align:center;font-size:10px;display:inline-block">
+      <text>周四</text>
+    </view>
+    <view style="width:{{bar_chart_width/7}}px;text-align:center;font-size:10px;display:inline-block">
+      <text>周五</text>
+    </view>
+    <view style="width:{{bar_chart_width/7}}px;text-align:center;font-size:10px;display:inline-block">
+      <text>周六</text>
+    </view>
+    <view style="width:{{bar_chart_width/7}}px;text-align:center;font-size:10px;display:inline-block">
+      <text>周日</text>
+    </view>
+  </view>
+  
+  
+
+  <!--view class="footer">
+    <text class="footer_t">XXX出品</text>
+    <text class="footer_t" bindtap="setting">更多设置</text>
+  </view-->
+
+
+
+
+</view>

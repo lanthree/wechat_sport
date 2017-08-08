@@ -1,0 +1,54 @@
+<view class="container">
+  <text class="section__title">设置日均目标积分</text>
+  <view class="body-view" style="width:80%">
+    <slider bindchange="change_4_slider" min="5000" max="20000" step="1000" show-value value="{{need_point}}" activeColor="#414f63" />
+  </view>
+
+  <view class="body-view" style="width:80%;display:block">
+    <button bindtap="update_need_point">提交设置</button>
+  </view>
+
+</view>
+
+<view class="splitline" style="width:100%" />
+
+<view class="container" style="font-color:#04ABFF">
+
+  <text class="section__title">我的组名</text>
+
+  <input style="width:70%" name="input" placeholder="{{groupname}}" bindinput="bindInputValue" auto-focus wx:if="{{!teammember && !teamleader}}"/>
+  <input style="width:70%" name="input" placeholder="{{groupname}}" bindinput="bindInputValue" disabled="true" auto-focus wx:if="{{teammember}}"/>
+  <input style="width:70%" name="input" placeholder="{{groupname}}" bindinput="bindInputValue" wx:if="{{teamleader}}"/>
+
+  <text class="section__title" style="padding-top:20px">日均及格分</text>
+  <view class="body-view" style="width:80%">
+    <slider bindchange="change_4_slider_pass" min="5000" max="15000" step="1000" show-value value="{{passpoint}}" activeColor="#414f63" wx:if="{{!teammember}}"/>
+    <slider bindchange="change_4_slider_pass" min="5000" max="15000" step="1000" show-value value="{{passpoint}}" activeColor="#414f63" disabled="true" wx:if="{{teammember}}"/>
+  </view>
+
+  <text class="section__title" style="padding-top:10px">运动积分设置</text>
+
+  <view class="body-view" style="width:70%">
+    <checkbox-group  bindchange="checkboxChange">
+    <view wx:for="{{support_sports}}" wx:key="key" wx:for-index="idx">
+      <checkbox value="{{idx}}" checked="{{item.checked}}" wx:if="{{idx==0}}" disabled="true"/>
+      <checkbox value="{{idx}}" checked="{{item.checked}}" wx:if="{{idx!=0 && teammember}}" disabled="true" />
+      <checkbox value="{{idx}}" checked="{{item.checked}}" wx:if="{{idx!=0 && !teammember}}" />
+      {{item.name}}
+
+      <text style="float:right" wx:if="{{idx==0}}">每步计 1 积分</text>
+      <picker id="{{idx}}" range="{{picker_values}}" style="float:right" bindchange="bindPickerChange" wx:if="{{idx!=0 && teamleader}}">累计积分：[ {{item.value}} ]</picker>
+      <picker id="{{idx}}" range="{{picker_values}}" style="float:right" wx:if="{{idx!=0 && teammember}}">累计积分：{{item.value}}</picker>
+      <picker id="{{idx}}" range="{{picker_values}}" style="float:right" wx:if="{{idx!=0 && !teammember && !teamleader}}">累计积分：{{item.value}}</picker>
+    </view>
+    </checkbox-group>
+    
+  </view>
+
+  <view class="body-view" style="width:80%;display:block;margin-top:5px">
+    <button bindtap="createGroup" wx:if="{{!teammember && !teamleader}}" style="padding-left:10px" data-action="create" >创建小组</button>
+    <button bindtap="exitGroup" wx:if="{{teammember || teamleader}}" style="margin-left:10px;background-color:#E55E3A">退出小组</button>
+    <button bindtap="createGroup" wx:if="{{teamleader}}" style="margin-left:10px" data-action="change">修改小组设置</button>
+  </view>
+
+</view>

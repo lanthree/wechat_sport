@@ -1,0 +1,18 @@
+<view animation="{{moveanimation}}" class="container" bindtouchstart="startmove" bindtouchend="endmove" bindtouchcancel="cancelmove">
+
+  <text class="section__title" style="padding-bottom:20px"> {{rank_info[now_item]}} </text>
+  <view class="body-view" style="width:80%;display:block;" wx:for="{{users_info_array[now_item]}}" wx:key="key" wx:for-index="idx">
+    <view class="splitline" style="width:100%;margin:5px 0px" wx:if="{{idx != 0}}" />
+    <view class="list_info" style="width:10%;vertical-align:middle;font-weight:bold">{{idx+1}}</view>
+    <view class="list_info" style="width:20%;vertical-align:middle">
+      <image src="{{item.avatar}}" class="image_circle" style="display:inline-block;" />
+    </view>
+    <view class="list_info" style="width:40%;vertical-align:middle">{{item.nickname}}</view>
+    <view class="list_info" style="width:30%;vertical-align:middle;text-align:right;font-weight:bold">{{item[ rank_attr[now_item] ]}}</view>
+  </view>
+
+  <view style="width:80%;display:block;margin-top:20px">
+    <i class="fa fa-hand-o-left fa-lg" style="display:inline_block;float:left;color:#839496" bindtap="info" />
+    <i class="fa fa-hand-o-right fa-lg" style="display:inline_block;float:right;color:#839496" bindtap="setting" />
+  </view>
+</view>
